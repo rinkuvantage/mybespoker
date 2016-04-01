@@ -1,0 +1,270 @@
+/* CSS Document */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
+*{ margin:0px; padding:0px;}
+a{ text-decoration:none;}
+img{border:none;}
+.clr{ clear:both; margin:0px; padding:0px;}
+h1,h2,h3,h4,h5,h6,h7,p,span{ margin:0px; padding:0px;}
+body {margin: 0; padding: 0; background-color: #fff; font-family: 'Open Sans', sans-serif; text-align:center; }
+.loginbox h1 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.maincontainer {
+    max-width: 768px;
+    height: auto;
+    margin: 0 auto;
+    float: none;
+    border: 1px solid #eee;
+    width: 100%;
+    display: inline-block;
+}
+.header {
+    background: #cccccc;
+    text-align: center;
+    padding: 5px 0px;
+    width: 100%;
+    float: left;
+    top: 0px;
+}
+.box1 label {
+    width: 34%;
+    float: left;
+    text-transform: capitalize;
+    min-height: 34px;
+    line-height: 34px;
+    COLOR: #000;
+    FONT-SIZE: 16PX;
+    text-align: left;
+}
+.loginbox {
+  display: inline-block;
+  float: none;
+  margin: 0 auto;
+  padding: 30px 0;
+  max-width: 380px;
+  width: 100%;
+}
+.loginmain_section{ text-align:center;}
+.inputbox {
+    float: left;
+    width: 66%;
+}
+input.inputtext {
+    border: 1px solid #cccccc;
+    min-height: 34px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.box1 {
+    float: left;
+    width: 100%;
+    margin-bottom: 19px;
+}
+.submit_button {
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    padding: 14px 18px;
+    border: none;
+    text-transform: uppercase;
+    LINE-HEIGHT: 18PX;
+    float: left;
+    margin-top: 23px;
+	cursor:pointer;
+}
+.submit_button:hover {
+    background: #cccccd;
+}
+.orderconfirmation th, .orderconfirmation td {
+    text-align: left;
+    padding:13px 0px 13px 18px;
+    border-bottom: 1px solid #eee;
+    width: 21%;
+    text-align: center;
+}
+.orderconfirmation th {
+    font-weight: 600;
+    color: #000;
+    font-size: 18px;
+}
+.orderconfirmation {
+    padding: 25px;
+    float: left;
+    width: 100%;
+	box-sizing:border-box;
+}
+.wrapper {
+    float: left;
+    width: 100%;
+}
+.orderconfirmation table {
+    border: 1px solid #eee;
+}
+.orderconfirmation h1 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+input.coupninput {
+    height: 30px;
+    border: 1px solid #cccccc;
+    width: 40%;
+    margin-left: 15px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+.total {
+    float: left;
+    margin-right: 20px;
+}
+.coupencode th, .coupencode td {
+    text-align: left;
+    padding: 15px 0px 15px 18px;
+    border-bottom: 1px solid #eee;
+}
+th.frame,  td.frame {
+    text-align: left;
+}
+.ordertable {
+  overflow: auto;
+}
+.order_frame_section h1 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.frame_section li {
+    /* text-align: center; */
+    list-style: none;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+    width: 86%;
+    display: inline-block;
+	
+}
+ul.frame_section {
+    text-align: center;
+}
+.frame_section li label {
+    display: inline;
+    float: left;
+    width: 29%;
+    text-align: right;
+    padding-right: 30px;
+    box-sizing: border-box;
+    color: #555555;
+    font-weight: 600;
+}
+select.inpt, .inpt {
+    color: #979797;
+    font-weight: 300;
+}
+li.chosenbox {
+    width: 54%;
+    border: 2px solid #e7e7e7;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.right_fram_box {
+    /* display: inline; */
+    /* float: none !important; */
+    TEXT-ALIGN: LEFT;
+}
+.inpt {
+  border: 1px solid #e3e3e3;
+  box-sizing: border-box;
+  font-size: 15px;
+  height: 32px;
+  padding-left: 10px;
+  width: 49%;
+}
+input.inpt.dimension {
+    width: 23%;
+}
+select.inpt {
+    width: 55%;
+}
+.chosenbox h1 {
+    font-size: 17px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.numbers {
+    text-align: left;
+    padding-left: 20px;
+    FONT-WEIGHT: 600;
+    margin-bottom: 6px;
+}
+.lefticon{ background: url(../images/liicon.png) no-repeat left;}
+.numbers input {
+    width: 33px;
+    height: 23px;
+    border: 1px solid #d9d9d9;
+}
+.numbers.quantity {
+    font-weight: normal;
+}
+.numbers.quantity input{ text-align:center;}
+.resetbox .inputbox {
+    display: inline-block;
+    width: auto;
+    margin-right: 10px;
+    float: none;
+}
+li.resetbox {
+    text-align: center;
+}
+li.border {
+    border-bottom: 2px solid #ececec;
+    padding-bottom: 20px;
+	margin-bottom:20px;
+}
+.order_frame_section {
+  margin: 0 auto;
+  max-width: 768px;
+  width: 100%;
+}
+.orderconfirmation input.submit_button {
+    FLOAT: RIGHT;
+    PADDING: 14px 31px;
+    /* FONT-WEIGHT: 600; */
+}
+select > option {
+    border-right: 2px solid #b2b2b2 !important;
+    padding-left: 10px;
+}
+input:focus, select:focus {
+  border: 1px solid skyblue;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+.frame_section li { display: inline-block;  list-style: outside none none;  margin-bottom: 0; padding-bottom: 20px;  width: 100%;}
+}
+@media (max-width: 700px){
+.frame_section li label {  font-size: 12px;}
+}
+@media (min-width: 320px) and (max-width: 400px) {
+.loginbox { padding: 10px;  box-sizing: border-box;}
+.box1 label { font-size: 13px;}
+.orderconfirmation th, .orderconfirmation td {  font-size: 13px;  padding: 13px 0 13px 6px;}
+.orderconfirmation th {  font-size: 11px;}
+.ordertable img {  width: 25%;}
+input.coupninput {  margin-left: 0;  width: 88%;}
+.total {  float: left;  margin-right: 0;}
+.header img { width: 100%;}
+.orderconfirmation {  padding: 10px;}
+.frame_section li {  width: 100%;}
+.frame_section li label {  padding-right: 5px;  width: 28%; font-size: 12px;}
+.inpt {  width: 62%;}
+select.inpt {  width: 61%;}
+li.chosenbox { border: 2px solid #e7e7e7;  box-sizing: border-box;  padding: 15px;  width: 95%;}
+.frame_section li.border{ margin-bottom: 20px;
+}
+}
