@@ -7,17 +7,30 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <name>Talent Shadows</name>
+    <name>Mybespoker</name>
 
     <description>
-      this is my first phone gap app
+      Mybespoker is frame online shopping app which allow customer to order frame online.
     </description>
 
     <author href="http://www.vantagewebtech.com" email="vantage.krishna@gmail.com">
      KRISHNA KM.
     </author>
 	
-	
+	<icon gap:platform="webos" src="images/logo.png" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="xhdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="xxhdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="xhdpi" />
+	<icon src="images/logo.png" gap:platform="android" gap:density="xxhdpi" />
+	<icon src="images/logo.png" gap:platform="winphone" />
+	<icon src="images/logo.png" gap:platform="winphone" gap:role="background" />
+	<gap:splash src="images/logo.png" gap:platform="ios" width="338" height="84" />
 	 <!-- Core plugins -->
 	 <gap:plugin name="com.ams.plugins.barcodescanner" />
    <!-- <gap:plugin name="org.apache.cordova.battery-status" />
