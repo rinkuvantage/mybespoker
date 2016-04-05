@@ -273,3 +273,5 @@ li.chosenbox { border: 2px solid #e7e7e7;  box-sizing: border-box;  padding: 15p
 .frame_section li.border{ margin-bottom: 20px;
 }
 }
+
+select{-webkit-appearance:none;}
