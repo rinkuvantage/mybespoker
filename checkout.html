@@ -2,38 +2,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>MYBESTPOKER</title>
+<title>Mybespoker</title>
 <link href="css/style.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+	jQuery( document ).on( "mobileinit", function() {
+		jQuery.mobile.allowCrossDomainPages = true;
+	});
+	var contentType ="application/x-www-form-urlencoded; charset=utf-8";
+    if(window.XDomainRequest){contentType = "text/plain";}
+	jQuery.support.cors = true; 
+		
+		var siteurl='http://tawebserver.com/mybespoker';
+		var url=siteurl+'/wp-admin/admin-ajax.php?acting=place_order';
+		
+		
+       jQuery.ajax({  
+         type: 'GET',  
+         url: url,           
+         dataType: 'jsonp',  
+         data: $('input[type="text"]'),  
+         crossDomain: true,  
+         success: function(res) {		 				
+				
+				
+			}
+       });
+	
+});
+</script>
 </head>
 <body>
 <div class="container maincontainer">
-  <div class="header"> <a href="#"><img src="images/logo.png" /></a> </div>
+  <div class="header"> <a href="./"><img src="images/logo.png" /></a> </div>
   <div class="wrapper">
     <div class="loginmain_section">
       <div class="loginbox">
         <h1>Enter your Details</h1>
         <div class="box1">
-          <label>First Name</label>
+          <label>Full Name</label>
           <div class="inputbox">
-            <input class="inputtext" type="text" placeholder=""/>
+            <input class="inputtext" name="full_name" tabindex="1" type="text" placeholder="Please enter full name"/>
           </div>
         </div>
         <div class="box1">
           <label>Mobile number</label>
           <div class="inputbox">
-            <input class="inputtext" type="password" placeholder=""/>
+            <input class="inputtext" name="mobile_no" maxlength="10" type="text" tabindex="2" placeholder="Please enter mobile number"/>
           </div>
         </div>
         <div class="box1">
           <label>Email Id</label>
           <div class="inputbox">
-            <input class="inputtext" type="text" placeholder=""/>
+            <input class="inputtext" name="email" type="text" tabindex="3" placeholder="Please enter email address"/>
           </div>
         </div>
         <div class="box1">
           <label>&nbsp;</label>
           <div class="inputbox">
-            <input class="submit_button" type="submit" value="SUBMIT"/>
+            <input class="submit_button confirm_order" type="button" tabindex="4" value="SUBMIT"/>
           </div>
         </div>
       </div>

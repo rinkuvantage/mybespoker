@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>MYBESTPOKER</title>
+<title>Mybespoker</title>
 <link href="css/style.css" type="text/css" rel="stylesheet" />
 <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -24,22 +24,15 @@ jQuery(document).ready(function(){
        jQuery.ajax({  
          type: 'GET',  
          url: url,           
-         dataType: 'json',  
+         dataType: 'jsonp',  
          data: {acting:'showlistofframes'},  
          crossDomain: true,  
          success: function(res) {  
 		 		   
 		       var availableFrames = res['frames'];
 			   
-			  				
-				jQuery("#frame_type").autocomplete({
-      					source: availableFrames
-    			});
-		   
-		   
-		   //console.log(res['dimention_width']);
-		   
-		   var available_dimention_width = res['dimention_width'];			   
+			  			   
+		   		var available_dimention_width = res['dimention_width'];			   
 			  				
 				jQuery("#dimention_width").autocomplete({
       					source: available_dimention_width
@@ -79,15 +72,126 @@ jQuery(document).ready(function(){
 				jQuery('body .bodyoverlay').remove();
 				jQuery('body .popupbox').remove();
 			}); 
-         },  
-         complete: function(data) {  
-		 	
-         }  
+         } 
        });
 	   
 	   
+	   $("#dimention_width, #dimention_height").keyup(function(e) {        
+		var frame_width = parseInt($("#dimention_width").val());
+		var frame_height = parseInt($("#dimention_height").val());
+		var frame_type = $("#frame_type").val();
+		
+		var qty_txt_temp = false;
+		var qty_dimention_temp = false;
+		
+		if(frame_type == "A" || frame_type == "B" || frame_type == "C" || frame_type == "D")
+		{
+			qty_txt_temp = true;	
+		}
+		
+		if(frame_width > 0 && frame_height > 0)
+		{
+			qty_dimention_temp= true;
+		}
+		
+		
+		if(qty_txt_temp == true && qty_dimention_temp == true)
+		{
+			$(".calculate_price").attr("disabled", false);
+			$(".calculate_price").removeClass("desable");	
+		}else{
+			$(".calculate_price").attr("disabled", true);	
+			$(".calculate_price").addClass("desable");
+		}
+		
+    });
+	
+	$("#dimention_width, #dimention_height").trigger("keyup");
+	
+	
+	$(".calculate_price").live("click", function(){
+	
+		var acturl = url + '?acting=calculateprice';
+	 	jQuery.ajax({  
+			 type: 'POST',  
+			 url: acturl,           
+			 dataType: 'jsonp',  
+			 data: jQuery('input[type="text"], select[name="frame_type"], select[name="mount_board"], select[name="glass_type"], input[name="acting"]'),  
+			 crossDomain: true,  
+			 success: function(res) {  
+				if(res['dimention'])	   
+				{
+						  jQuery(".entered_dimention").html(res['dimention']);
+			 	}
+				if(res['frame_type'])	   
+				{
+						  jQuery(".entered_frame_type").html(res['frame_type']);
+			 	}
+				if(res['mount_board'])	   
+				{
+						  jQuery(".entered_mount_board").html(res['mount_board']);
+			 	}
+				
+				if(res['glass_type'])	   
+				{
+						  jQuery(".entered_glass_type").html(res['glass_type']);
+			 	}
+				
+				if(res['mount_size'])	   
+				{
+					 jQuery(".entered_mount_size").html(res['mount_size']);
+			 	}
+				
+				
+				
+				if(res['calculated_price'])	   
+				{
+						  jQuery(".calculated_price").html(res['calculated_price']);
+			 	}
+				
+				if(parseFloat(res['price']) > 0.00){
+					$(".add_to_cart").attr("disabled", false);
+					$(".add_to_cart").removeClass("desable");
+				}else{
+					
+					$(".add_to_cart").attr("disabled", true);
+					$(".add_to_cart").addClass("desable");
+					
+				}
+			 }
+       });
 	   
- 
+	   
+	});
+	
+	
+	$(".add_to_cart").live("click", function(){
+	
+		var acturl = url + '?acting=add_to_cart';
+	 	jQuery.ajax({  
+			 type: 'POST',  
+			 url: acturl,           
+			 dataType: 'jsonp',  
+			 data: jQuery('input[type="text"], select[name="frame_type"], select[name="mount_board"], select[name="glass_type"], input[name="acting"]'),  
+			 crossDomain: true,  
+			 success: function(res) { 			 
+			 		alert(res['success']);	
+					$("#cart_common").removeClass("add_to_cart");	
+					$("#cart_common").addClass("proceed_to_checkout");
+					$("#cart_common").val("Proceed to checkout");
+					$('input[type="text"]').val("");
+					$(".calculate_price").addClass("desable");
+					$(".calculate_price").attr("disabled", true);
+			 }
+       });	   
+	}); 
+	
+	$(".proceed_to_checkout").live("click", function(){
+		
+		location= "cart.html";	
+	
+	});
+	
 });
 </script>
 </head>
@@ -100,7 +204,7 @@ jQuery(document).ready(function(){
         <h1>Order Your Frame</h1>
         <ul class="frame_section">
           <li>
-            <label>Frame Dimensions</label>
+            <label><span class="req">*</span>Frame Dimensions</label>
             <div class="right_fram_box">
               <input class="inpt dimension" tabindex="1" type="text" id="dimention_width" name="dimention_width" placeholder="Enter frame width" />
               X
@@ -108,9 +212,14 @@ jQuery(document).ready(function(){
             </div>
           </li>
           <li class="border">
-            <label>* Frame Type</label>
+            <label><span class="req">*</span>Frame Type</label>
             <div class="right_fram_box">
-              <input class="inpt" tabindex="3" type="text" id="frame_type" name="frame_type" placeholder="Enter frame type" />
+              <select class="inpt" tabindex="3" id="frame_type" name="frame_type">              
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              </select>
             </div>
           </li>
           <li>
@@ -126,6 +235,7 @@ jQuery(document).ready(function(){
               <input class="inpt dimension" type="text" tabindex="5" name="mount_width" placeholder="Enter mount width" value="0" />
               X
               <input class="inpt dimension" tabindex="6" type="text" name="mount_height" placeholder="Enter mount height" value="0" />
+             
             </div>
           </li>
           <li>
@@ -139,21 +249,22 @@ jQuery(document).ready(function(){
             <h1>You have chosen</h1>
             <div class="numbers lefticon">Dimention:&nbsp;<span class="entered_dimention">none</span></div>
             <div class="numbers lefticon">Frame Type:&nbsp;<span class="entered_frame_type">none</span></div>
-            <div class="numbers lefticon">Mount Board:&nbsp;<span class="entered_mount">none</span></div>
-            <div class="numbers lefticon">Mount Size:&nbsp;<span class="entered_mount">none</span></div>
-            <div class="numbers lefticon">Glass Type:&nbsp;<span class="entered_mount">none</span></div>
-            <div class="numbers quantity">Quantity: <input type="text" value="0" disabled="disabled" /></div>
-            <div class="numbers">Price 100</div>
+            <div class="numbers lefticon">Mount Board:&nbsp;<span class="entered_mount_board">none</span></div>
+            <div class="numbers lefticon">Mount Size:&nbsp;<span class="entered_mount_size">none</span></div>
+            <div class="numbers lefticon">Glass Type:&nbsp;<span class="entered_glass_type">none</span></div>
+            <div class="numbers lefticon">Price:&nbsp;<span class="calculated_price">&pound;0.00</span></div>
+            <div class="numbers quantity">Quantity: <input type="text" name="qty" max="qty" id="qty" value="1"/></div>
+            <div class="numbers calprice"></div>
           </li>
           <li class="resetbox">
             <div class="inputbox">
               <input class="submit_button" type="reset" value="RESET"/>
             </div>
             <div class="inputbox">
-              <input class="submit_button" type="button" value="ADD ANOTHER FRAME"/>
+              <input class="submit_button desable calculate_price" type="button" value="Calculate Price" disabled="disabled"/>
             </div>
             <div class="inputbox">
-              <input class="submit_button" type="button" value="PROCEED" onclick="return checkForm();"/>
+              <input id="cart_common" class="submit_button desable add_to_cart" type="button" value="Add to cart" disabled="disabled"/>
             </div>
           </li>
         </ul>
