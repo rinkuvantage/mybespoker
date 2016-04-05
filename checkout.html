@@ -18,18 +18,43 @@ jQuery(document).ready(function(){
 		var siteurl='http://tawebserver.com/mybespoker';
 		var url=siteurl+'/wp-admin/admin-ajax.php?acting=place_order';
 		
-		
-       jQuery.ajax({  
-         type: 'GET',  
-         url: url,           
-         dataType: 'jsonp',  
-         data: $('input[type="text"]'),  
-         crossDomain: true,  
-         success: function(res) {		 				
-				
-				
-			}
-       });
+		$('.confirm_order').live("click", function(){
+			   jQuery.ajax({  
+				 type: 'GET',  
+				 url: url,           
+				 dataType: 'jsonp',  
+				 data: $('input[type="text"]'),  
+				 crossDomain: true,  
+				 success: function(res) {	
+				 
+				 	$(".error").remove();	 				
+						
+						if(res['success'])
+						{
+							location = 'success.html';	
+						}
+						
+						if(res['error'])
+						{
+							if(res['error']['full_name'])
+							{
+								$('input[name="full_name"]').after('<span class="error">' + res['error']['full_name'] + '</span>');	
+							}
+							if(res['error']['mobile_no'])
+							{
+								$('input[name="mobile_no"]').after('<span class="error">' + res['error']['mobile_no'] + '</span>');	
+							}
+							if(res['error']['email'])
+							{
+								$('input[name="email"]').after('<span class="error">' + res['error']['email'] + '</span>');	
+							}
+						}
+					}
+			   });
+	   
+		});
+	   
+	   
 	
 });
 </script>

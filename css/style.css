@@ -248,6 +248,7 @@ input:focus, select:focus {
   border: 1px solid skyblue;
 }
 .req{ font-size:12px; font-weight:600; color:#F00; padding-right:2px;}
+.error{ color:#FF0000;}
 
 @media (min-width: 320px) and (max-width: 768px) {
 .frame_section li { display: inline-block;  list-style: outside none none;  margin-bottom: 0; padding-bottom: 20px;  width: 100%;}
