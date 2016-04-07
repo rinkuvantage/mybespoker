@@ -116,7 +116,7 @@ jQuery(document).ready(function(){
 			 type: 'POST',  
 			 url: acturl,           
 			 dataType: 'jsonp',  
-			 data: jQuery('input[type="text"], select[name="frame_type"], select[name="mount_board"], select[name="glass_type"], input[name="acting"]'),  
+			 data: jQuery('input[type="number"], select[name="frame_type"], select[name="mount_board"], select[name="glass_type"], input[name="acting"]'),  
 			 crossDomain: true,  
 			 success: function(res) {  
 				if(res['dimention'])	   
@@ -181,7 +181,7 @@ jQuery(document).ready(function(){
 					$("#cart_common").removeClass("add_to_cart");	
 					$("#cart_common").addClass("proceed_to_checkout");
 					$("#cart_common").val("Proceed to checkout");
-					$('input[type="text"]').val("");
+					$('input[type="number"]').val("");
 					$(".calculate_price").addClass("desable");
 					$(".calculate_price").attr("disabled", true);
 			 }
@@ -195,7 +195,7 @@ jQuery(document).ready(function(){
 	});
 	
 	$(".reset").live("click", function(){
-			$('input[type="text"]').val('');
+			$('input[type="number"]').val('');
 			$('select').val('');
 			$('select').val('');
 			$(".calculate_price").addClass("desable");
@@ -219,9 +219,9 @@ jQuery(document).ready(function(){
           <li>
             <label><span class="req">*</span>Frame Dimensions</label>
             <div class="right_fram_box">
-              <input class="inpt dimension" tabindex="1" type="text" id="dimention_width" name="dimention_width" placeholder="width" />
+              <input class="inpt dimension" tabindex="1" type="number" id="dimention_width" name="dimention_width" placeholder="width" />
               X
-              <input class="inpt dimension" tabindex="2" type="text" id="dimention_height" name="dimention_height" placeholder="Height" />
+              <input class="inpt dimension" tabindex="2" type="number" id="dimention_height" name="dimention_height" placeholder="Height" />
             </div>
           </li>
           <li class="border">
@@ -247,9 +247,9 @@ jQuery(document).ready(function(){
           <li class="border">
             <label>Mount Size</label>
             <div class="right_fram_box">
-              <input class="inpt dimension" type="text" tabindex="5" name="mount_width" placeholder="Enter mount width" value="0" />
+              <input class="inpt dimension" type="number" tabindex="5" name="mount_width" placeholder="Enter mount width" value="0" />
               X
-              <input class="inpt dimension" tabindex="6" type="text" name="mount_height" placeholder="Enter mount height" value="0" />
+              <input class="inpt dimension" tabindex="6" type="number" name="mount_height" placeholder="Enter mount height" value="0" />
              
             </div>
           </li>
@@ -268,7 +268,7 @@ jQuery(document).ready(function(){
             <div class="numbers lefticon">Mount Size:&nbsp;<span class="entered_mount_size">none</span></div>
             <div class="numbers lefticon">Glass Type:&nbsp;<span class="entered_glass_type">none</span></div>
             <div class="numbers lefticon">Price:&nbsp;<span class="calculated_price">&pound;0.00</span></div>
-            <div class="numbers quantity">Quantity: <input type="text" name="qty" max="qty" id="qty" value="1"/></div>
+            <div class="numbers quantity">Quantity: <input type="number" name="qty" max="qty" id="qty" value="1"/></div>
             <div class="numbers calprice"></div>
           </li>
           <li class="resetbox">
