@@ -179,10 +179,7 @@ jQuery(document).ready(function(){
 			 crossDomain: true,  
 			 success: function(res) { 			 
 			 		alert(res['success']);	
-					$("#cart_common").removeClass("add_to_cart");
-					$("#cart_common").removeClass("desable");	
-					$("#cart_common").addClass("proceed_to_checkout");
-					$("#cart_common").val("Proceed to checkout");
+					
 					$('input[type="number"]').val("");
 					$(".calculate_price").addClass("desable");
 					$(".calculate_price").attr("disabled", true);					
@@ -194,6 +191,11 @@ jQuery(document).ready(function(){
 					$(".entered_glass_type").html('none');
 					$(".calculated_price").html('&pound;0.00');
 					$("#qty").val(1);
+					
+					$("#cart_common").removeClass("add_to_cart");
+					$("#cart_common").removeClass("desable");	
+					$("#cart_common").addClass("proceed_to_checkout");
+					$("#cart_common").val("Proceed to checkout");
 				}
        });	   
 	}); 
