@@ -179,7 +179,8 @@ jQuery(document).ready(function(){
 			 crossDomain: true,  
 			 success: function(res) { 			 
 			 		alert(res['success']);	
-					$("#cart_common").removeClass("add_to_cart");	
+					$("#cart_common").removeClass("add_to_cart");
+					$("#cart_common").removeClass("desable");	
 					$("#cart_common").addClass("proceed_to_checkout");
 					$("#cart_common").val("Proceed to checkout");
 					$('input[type="number"]').val("");
