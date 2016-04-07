@@ -29,9 +29,10 @@ jQuery(document).ready(function(){
 				
 				if(res['empty'])
 				{
-					$(".submit_button").addClass("desable");	
-					$(".submit_button").attr("disabled", true);
-					$(".submit_button").before('<input type="button" class="submit_button back_to_home" value="Back" />&nbsp;&nbsp;');
+					//$(".submit_button").addClass("desable");	
+					//$(".submit_button").attr("disabled", true);
+					//$(".submit_button").before('<input type="button" class="submit_button back_to_home" value="Back" />&nbsp;&nbsp;');
+					$(".inputbox").remove();
 					
 				}else{
 					$(".submit_button").removeClass("desable");
@@ -59,9 +60,10 @@ jQuery(document).ready(function(){
 					
 				if(res['empty'])
 				{
-					$(".submit_button").addClass("desable");	
-					$(".submit_button").attr("disabled", true);
-					$(".submit_button").before('<a href="./" class="submit_button">BACK</a>&nbsp;&nbsp;');
+					//$(".submit_button").addClass("desable");	
+					//$(".submit_button").attr("disabled", true);
+					//$(".submit_button").before('<a href="./" class="submit_button">BACK</a>&nbsp;&nbsp;');
+					$(".inputbox").remove();
 					
 				}else{
 					$(".submit_button").removeClass("desable");
@@ -80,11 +82,11 @@ jQuery(document).ready(function(){
 			
 		});  
 		
-		$(".back_to_home").live("click", function(){
+		/*$(".back_to_home").live("click", function(){
 			
 			location = "index.html";	
 			
-		});
+		});*/
 	
 });
 </script>
