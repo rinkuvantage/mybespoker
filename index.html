@@ -157,6 +157,8 @@ jQuery(document).ready(function(){
 					$(".add_to_cart").attr("disabled", true);
 					$(".add_to_cart").addClass("desable");
 					
+					alert("Sorry, frame size requested by you is not available.");
+					
 				}
 			 }
        });
@@ -192,6 +194,17 @@ jQuery(document).ready(function(){
 	
 	});
 	
+	$(".reset").live("click", function(){
+			$('input[type="text"]').val('');
+			$('select').val('');
+			$('select').val('');
+			$(".calculate_price").addClass("desable");
+			$(".calculate_price").attr("disabled", true);
+			$("#cart_common").addClass("desable");
+			$("#cart_common").attr("disabled", true);
+			
+	});
+	
 });
 </script>
 </head>
@@ -219,6 +232,8 @@ jQuery(document).ready(function(){
               <option value="B">B</option>
               <option value="C">C</option>
               <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
               </select>
             </div>
           </li>
@@ -258,7 +273,7 @@ jQuery(document).ready(function(){
           </li>
           <li class="resetbox">
             <div class="inputbox">
-              <input class="submit_button" type="reset" value="RESET"/>
+              <input class="submit_button reset" type="reset" value="RESET"/>
             </div>
             <div class="inputbox">
               <input class="submit_button desable calculate_price" type="button" value="Calculate Price" disabled="disabled"/>
