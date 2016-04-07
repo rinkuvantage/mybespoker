@@ -19,7 +19,7 @@ jQuery(document).ready(function(){
 	jQuery.support.cors = true;
     
 		
-		var siteurl='http://tawebserver.com/mybespoker';
+		var siteurl='http:/tawebserver.com/mybespoker';
 		var url=siteurl+'/wp-admin/admin-ajax.php';
        jQuery.ajax({  
          type: 'GET',  
@@ -76,7 +76,7 @@ jQuery(document).ready(function(){
        });
 	   
 	   
-	   $("#dimention_width, #dimention_height").keyup(function(e) {        
+	   $("#dimention_width, #dimention_height").keypress(function(e) {        
 		var frame_width = parseInt($("#dimention_width").val());
 		var frame_height = parseInt($("#dimention_height").val());
 		var frame_type = $("#frame_type").val();
@@ -84,18 +84,14 @@ jQuery(document).ready(function(){
 		var qty_txt_temp = false;
 		var qty_dimention_temp = false;
 		
-		if(frame_type == "A" || frame_type == "B" || frame_type == "C" || frame_type == "D")
-		{
-			qty_txt_temp = true;	
-		}
-		
+				
 		if(frame_width > 0 && frame_height > 0)
 		{
 			qty_dimention_temp= true;
 		}
 		
 		
-		if(qty_txt_temp == true && qty_dimention_temp == true)
+		if(qty_dimention_temp == true)
 		{
 			$(".calculate_price").attr("disabled", false);
 			$(".calculate_price").removeClass("desable");	
@@ -106,7 +102,7 @@ jQuery(document).ready(function(){
 		
     });
 	
-	$("#dimention_width, #dimention_height").trigger("keyup");
+	$("#dimention_width, #dimention_height").trigger("keypress");
 	
 	
 	$(".calculate_price").live("click", function(){
@@ -152,11 +148,16 @@ jQuery(document).ready(function(){
 				if(parseFloat(res['price']) > 0.00){
 					$(".add_to_cart").attr("disabled", false);
 					$(".add_to_cart").removeClass("desable");
+					$("#cart_common").val("Add to cart");
+					$("#cart_common").removeClass("proceed_to_checkout");
+					$("#cart_common").addClass("add_to_cart");
+					
 				}else{
 					
 					$(".add_to_cart").attr("disabled", true);
 					$(".add_to_cart").addClass("desable");
-					
+					$("#cart_common").removeClass("proceed_to_checkout");
+					$("#cart_common").addClass("add_to_cart desable");
 					alert("Sorry, frame size requested by you is not available.");
 					
 				}
@@ -174,7 +175,7 @@ jQuery(document).ready(function(){
 			 type: 'POST',  
 			 url: acturl,           
 			 dataType: 'jsonp',  
-			 data: jQuery('input[type="text"], select[name="frame_type"], select[name="mount_board"], select[name="glass_type"], input[name="acting"]'),  
+			 data: jQuery('input[type="number"], select[name="frame_type"], select[name="mount_board"], select[name="glass_type"]'),  
 			 crossDomain: true,  
 			 success: function(res) { 			 
 			 		alert(res['success']);	
@@ -183,8 +184,16 @@ jQuery(document).ready(function(){
 					$("#cart_common").val("Proceed to checkout");
 					$('input[type="number"]').val("");
 					$(".calculate_price").addClass("desable");
-					$(".calculate_price").attr("disabled", true);
-			 }
+					$(".calculate_price").attr("disabled", true);					
+					$('select').val('');					
+					$(".entered_dimention").html('none');
+					$(".entered_frame_type").html('none');
+					$(".entered_mount_board").html('none');
+					$(".entered_mount_size").html('none');
+					$(".entered_glass_type").html('none');
+					$(".calculated_price").html('&pound;0.00');
+					$("#qty").val(1);
+				}
        });	   
 	}); 
 	
@@ -201,7 +210,15 @@ jQuery(document).ready(function(){
 			$(".calculate_price").addClass("desable");
 			$(".calculate_price").attr("disabled", true);
 			$("#cart_common").addClass("desable");
-			$("#cart_common").attr("disabled", true);
+			$("#cart_common").attr("disabled", true);			
+			$(".entered_dimention").html('none');
+			$(".entered_frame_type").html('none');
+			$(".entered_mount_board").html('none');
+			$(".entered_mount_size").html('none');
+			$(".entered_glass_type").html('none');
+			$(".calculated_price").html('&pound;0.00');
+			$("#qty").val(1);
+           			
 			
 	});
 	
@@ -247,9 +264,9 @@ jQuery(document).ready(function(){
           <li class="border">
             <label>Mount Size</label>
             <div class="right_fram_box">
-              <input class="inpt dimension" type="number" tabindex="5" name="mount_width" placeholder="Enter mount width" value="0" />
+              <input class="inpt dimension" type="number" tabindex="5" name="mount_width" placeholder="Width" />
               X
-              <input class="inpt dimension" tabindex="6" type="number" name="mount_height" placeholder="Enter mount height" value="0" />
+              <input class="inpt dimension" tabindex="6" type="number" name="mount_height" placeholder="Height"  />
              
             </div>
           </li>

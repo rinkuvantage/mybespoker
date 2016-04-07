@@ -7,18 +7,12 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function(){
-
-	jQuery( document ).on( "mobileinit", function() {
-		jQuery.mobile.allowCrossDomainPages = true;
-	});
-	var contentType ="application/x-www-form-urlencoded; charset=utf-8";
-    if(window.XDomainRequest){contentType = "text/plain";}
-	jQuery.support.cors = true; 
-		
-		var siteurl='http://tawebserver.com/mybespoker';
-		var url=siteurl+'/wp-admin/admin-ajax.php?acting=place_order';
-		
+	
 		$('.confirm_order').live("click", function(){
+			
+			var siteurl='http://tawebserver.com/mybespoker';
+			var url=siteurl+'/wp-admin/admin-ajax.php?acting=place_order';
+		
 			   jQuery.ajax({  
 				 type: 'GET',  
 				 url: url,           
