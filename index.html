@@ -19,7 +19,7 @@ jQuery(document).ready(function(){
 	jQuery.support.cors = true;
     
 		
-		var siteurl = 'http://tawebserver.com/mybespoker';
+		var siteurl = '/mybespoker';
 		var url = siteurl + '/wp-admin/admin-ajax.php';
        jQuery.ajax({  
          type: 'GET',  
@@ -179,7 +179,9 @@ jQuery(document).ready(function(){
 			 crossDomain: true,  
 			 success: function(res) { 			 
 			 		alert(res['success']);	
-					
+					$("#cart_common").removeClass("add_to_cart");	
+					$("#cart_common").addClass("proceed_to_checkout");
+					$("#cart_common").val("Proceed to checkout");
 					$('input[type="number"]').val("");
 					$(".calculate_price").addClass("desable");
 					$(".calculate_price").attr("disabled", true);					
@@ -191,11 +193,6 @@ jQuery(document).ready(function(){
 					$(".entered_glass_type").html('none');
 					$(".calculated_price").html('&pound;0.00');
 					$("#qty").val(1);
-					
-					$("#cart_common").removeClass("add_to_cart");
-					$("#cart_common").removeClass("desable");	
-					$("#cart_common").addClass("proceed_to_checkout");
-					$("#cart_common").val("Proceed to checkout");
 				}
        });	   
 	}); 
@@ -236,15 +233,8 @@ jQuery(document).ready(function(){
       <div class="order_frame_section">
         <h1>Order Your Frame</h1>
         <ul class="frame_section">
-          <li>
-            <label><span class="req">*</span>Frame Dimensions</label>
-            <div class="right_fram_box">
-              <input class="inpt dimension" tabindex="1" type="number" id="dimention_width" name="dimention_width" placeholder="width" />
-              X
-              <input class="inpt dimension" tabindex="2" type="number" id="dimention_height" name="dimention_height" placeholder="Height" />
-            </div>
-          </li>
-          <li class="border">
+        
+        <li>
             <label><span class="req">*</span>Frame Type</label>
             <div class="right_fram_box">
               <select class="inpt" tabindex="3" id="frame_type" name="frame_type">              
@@ -257,6 +247,16 @@ jQuery(document).ready(function(){
               </select>
             </div>
           </li>
+          
+          <li class="border">
+            <label><span class="req">*</span>Frame Dimensions</label>
+            <div class="right_fram_box">
+              <input class="inpt dimension" tabindex="1" type="number" id="dimention_width" name="dimention_width" placeholder="width" />
+              X
+              <input class="inpt dimension" tabindex="2" type="number" id="dimention_height" name="dimention_height" placeholder="Height" />
+            </div>
+          </li>
+          
           <li>
             <label>Mount Board</label>
             <div class="right_fram_box">
