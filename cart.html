@@ -15,8 +15,8 @@ jQuery(document).ready(function(){
     if(window.XDomainRequest){contentType = "text/plain";}
 	jQuery.support.cors = true; 
 		
-		var siteurl='http://tawebserver.com/mybespoker';
-		var url=siteurl+'/wp-admin/admin-ajax.php';
+		var siteurl = 'http://tawebserver.com/mybespoker';
+		var url = siteurl+'/wp-admin/admin-ajax.php';
        jQuery.ajax({  
          type: 'GET',  
          url: url,           
@@ -29,10 +29,9 @@ jQuery(document).ready(function(){
 				
 				if(res['empty'])
 				{
-					//$(".submit_button").addClass("desable");	
-					//$(".submit_button").attr("disabled", true);
-					//$(".submit_button").before('<input type="button" class="submit_button back_to_home" value="Back" />&nbsp;&nbsp;');
-					$(".inputbox").remove();
+					$(".submit_button").addClass("desable");	
+					$(".submit_button").attr("disabled", true);
+					$(".submit_button").before('<input type="button" class="submit_button back_to_home" value="Back" />&nbsp;&nbsp;');
 					
 				}else{
 					$(".submit_button").removeClass("desable");
@@ -60,10 +59,9 @@ jQuery(document).ready(function(){
 					
 				if(res['empty'])
 				{
-					//$(".submit_button").addClass("desable");	
-					//$(".submit_button").attr("disabled", true);
-					//$(".submit_button").before('<a href="./" class="submit_button">BACK</a>&nbsp;&nbsp;');
-					$(".inputbox").remove();
+					$(".submit_button").addClass("desable");	
+					$(".submit_button").attr("disabled", true);
+					$(".submit_button").before('<a href="./" class="submit_button">BACK</a>&nbsp;&nbsp;');
 					
 				}else{
 					$(".submit_button").removeClass("desable");
@@ -76,17 +74,44 @@ jQuery(document).ready(function(){
        	   });
 	    });	 
 		
-		$(".continue").live("click", function(){
+		$(".continue").live("click", function(){			
 			
-			location = "checkout.html";	
+			var coupon_cde = $('input[name="coupon_cde"]').val();	
 			
+			if(coupon_cde == "")
+			{
+				location = "checkout.html";
+			}else if(coupon_cde != "")
+			{
+				 jQuery.ajax({  
+					 type: 'GET',  
+					 url: url,           
+					 dataType: 'jsonp',  
+					 data: {acting:'validateCoupon', couponcode: coupon_cde},  
+					 crossDomain: true,  
+					 success: function(res) {	
+					 	$('.inputerror').remove();						
+							
+						if(res['success'])
+						{
+							location = "checkout.html";							
+						}else if(res['error']){							
+							$('input[name="coupon_cde"]').after('<p class="inputerror">' + res['error'] + "</p>");
+						}
+					}
+						
+						
+				   });
+			}
+			
+						
 		});  
 		
-		/*$(".back_to_home").live("click", function(){
+		$(".back_to_home").live("click", function(){
 			
 			location = "index.html";	
 			
-		});*/
+		});
 	
 });
 </script>
